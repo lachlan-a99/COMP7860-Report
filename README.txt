@@ -1,0 +1,1 @@
+To import the data correctly, navigate to the bottom of the FFT_script_Lachlan and change the location of the .csv files to their correct location after downloading. 

@@ -1,0 +1,15 @@
+% matlab7.0_Frequency-response program 
+Fs = 500;  T = 1/Fs;  clf;      % Sampling frequency 500hz
+"a=3*1000;                   % Set the starting data (in this case, it is from 3000, and the data before 3000 is not used)"
+"x1 = a:1:(a+499);              % Data length is 500. x1 is a one-row, 500-column matrix (here, the values are from 3000 to 3499)"
+"c = s1(x1,1);                  % s1 is a variable manually created beforehand, and the FBG data has been pasted into its first column. Variable c gets the requested 500 FBG results from s1 (here, it starts from the 3000th).  "
+y = c - mean(c);               % Getting rid of the average to filter the 0Hz data
+L =length(c);                 % Length of c
+t = (0:L-1)*T;               % Set time interval 
+NFFT = 2^nextpow2(L);   % The closest power of 2 larger than L
+"Y = fft(y,NFFT)/L;          %FFT"
+"f = Fs/2*linspace(0,1,NFFT/2+1);   % Frequency from 0 to 250Hz with NFFT/2+1 intervals "
+"FFTmodulus = 2*abs(Y(1:NFFT/2+1));  % modulus of Y, times 2 to get both the positive and negative modulus, only use Y from 1 to NFFT/2+1 as Y is symmetrical excluding the first point. "
+"plot(f, FFTmodulus);  "
+xlabel('Frequency (Hz)'); 
+ylabel('Resonant Wavelength Shift (pm)'); % Resonant Wavelength Shift (pm) or Acceleration(g)
